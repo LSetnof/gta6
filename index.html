@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>html,body{margin:0}</style>
+<title>Contagem GTA VI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600&display=swap">
+<style>
+/* Layout: one centered column, sunset gradient ground, four big time blocks in a row that wraps to 2x2 on phones */
+:root {
+  --bg: #14091f;
+  --bg-2: #3a1250;
+  --sun-1: #ff4f8b;
+  --sun-2: #ff9a3c;
+  --fg: #fff4ec;
+  --muted: #c9a9c4;
+  --line: rgba(255, 244, 236, 0.18);
+  --panel: rgba(20, 9, 31, 0.55);
+  --display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+html, body { min-height: 100%; }
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(120% 70% at 50% 108%, var(--sun-2) 0%, var(--sun-1) 22%, var(--bg-2) 52%, var(--bg) 78%);
+  background-attachment: fixed;
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-inline: 16px;
+  padding-block: 40px 32px;
+}
+main {
+  max-width: 880px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  min-height: 70vh;
+  justify-content: center;
+}
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 11vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  margin: 8px 0 0;
+  text-wrap: balance;
+  background: linear-gradient(180deg, #fff4ec 20%, var(--sun-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.date {
+  font-size: clamp(1.05rem, 3.4vw, 1.4rem);
+  font-weight: 600;
+  margin: 12px 0 0;
+}
+.clock {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.unit {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 18px 8px 14px;
+  text-align: center;
+  min-width: 0;
+}
+.num {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 12vw, 5.8rem);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.label {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.unit.sec .num { color: var(--sun-2); }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: baseline;
+  justify-content: space-between;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.meta p { margin: 0; }
+.meta a { color: var(--fg); text-underline-offset: 3px; }
+.meta a:focus-visible { outline: 2px solid var(--sun-2); outline-offset: 3px; }
+.recado {
+  margin: 0;
+  padding: 22px 18px;
+  text-align: center;
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 8vw, 3.8rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+  color: #14091f;
+  background: linear-gradient(90deg, var(--sun-2), var(--sun-1));
+  border-radius: 6px;
+  box-shadow: 0 0 0 3px var(--fg), 0 10px 40px rgba(255, 79, 139, 0.55);
+  animation: pulsar 1.8s ease-in-out infinite;
+}
+@keyframes pulsar {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .recado { animation: none; }
+}
+.done { display: none; }
+body.released .clock { display: none; }
+body.released .done { display: block; }
+.done {
+  font-family: var(--display);
+  font-size: clamp(2rem, 9vw, 4.5rem);
+  text-transform: uppercase;
+  color: var(--sun-2);
+}
+@media (max-width: 520px) {
+  .clock { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .num { font-size: clamp(3.4rem, 22vw, 5rem); }
+}
+</style>
+
+<main>
+  <header>
+    <p class="eyebrow">Rockstar Games apresenta</p>
+    <h1>Grand Theft Auto VI</h1>
+    <p class="date">Lançamento: 19 de novembro de 2026</p>
+  </header>
+
+  <section aria-label="Contagem decrescente">
+    <div class="clock" role="timer" aria-live="off">
+      <div class="unit"><span class="num" id="d">--</span><span class="label">Dias</span></div>
+      <div class="unit"><span class="num" id="h">--</span><span class="label">Horas</span></div>
+      <div class="unit"><span class="num" id="m">--</span><span class="label">Minutos</span></div>
+      <div class="unit sec"><span class="num" id="s">--</span><span class="label">Segundos</span></div>
+    </div>
+    <p class="done">Já saiu. Bom jogo!</p>
+  </section>
+
+  <footer class="meta">
+    <p>PlayStation 5 · Xbox Series X|S</p>
+    <p>Data oficial em <a href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">rockstargames.com/VI</a>. A contagem termina à meia-noite da tua hora local.</p>
+  </footer>
+
+  <p class="recado">Bora Mário! Compra a PS5 antes q seja tarde!</p>
+</main>
+
+<script>
+(function () {
+  var target = new Date(2026, 10, 19, 0, 0, 0); // 19 nov 2026, 00:00 hora local
+  var el = { d: document.getElementById("d"), h: document.getElementById("h"),
+             m: document.getElementById("m"), s: document.getElementById("s") };
+  function pad(n) { return n < 10 ? "0" + n : String(n); }
+  function tick() {
+    var diff = target.getTime() - Date.now();
+    if (diff <= 0) { document.body.classList.add("released"); return false; }
+    var secs = Math.floor(diff / 1000);
+    el.d.textContent = Math.floor(secs / 86400);
+    el.h.textContent = pad(Math.floor(secs % 86400 / 3600));
+    el.m.textContent = pad(Math.floor(secs % 3600 / 60));
+    el.s.textContent = pad(secs % 60);
+    return true;
+  }
+  if (tick()) {
+    var id = setInterval(function () { if (!tick()) clearInterval(id); }, 1000);
+  }
+})();
+</script>
+
+</html>
